@@ -1,13 +1,7 @@
 <?php get_header();
 ?>
-    <div class="container">
-        <?php
-        if (have_posts()):
-            while (have_posts()) : the_post();
-                get_template_part("template_parts/article");
-            endwhile;
-        endif;
-        ?>
-    </div>
+<h1>
+    Student ethnographies @ Pomona
+</h1>
 <?php
 get_footer();
