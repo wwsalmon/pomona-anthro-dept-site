@@ -1,5 +1,5 @@
 <?php
-function sz_template_register_menus()
+function panth_register_menus()
 {
     add_theme_support('menus');
     register_nav_menus(array(
@@ -7,4 +7,4 @@ function sz_template_register_menus()
     ));
 }
 
-add_action('init', 'sz_template_register_menus');
+add_action('init', 'panth_register_menus');

@@ -1,26 +1,26 @@
 <?php
-function sz_template_customizer($wp_customize)
+function panth_customizer($wp_customize)
 {
-    $wp_customize->add_section('sz-template-section', array(
+    $wp_customize->add_section('panth-section', array(
         'title' => "Theme Custom Settings"
     ));
-    $wp_customize->add_setting('sz-template-image');
-    $wp_customize->add_control(new WP_Customize_Cropped_Image_Control($wp_customize, 'sz-template-image-control', array(
+    $wp_customize->add_setting('panth-image');
+    $wp_customize->add_control(new WP_Customize_Cropped_Image_Control($wp_customize, 'panth-image-control', array(
         "label" => "image field",
-        "section" => "sz-template-section",
-        "settings" => "sz-template-image",
+        "section" => "panth-section",
+        "settings" => "panth-image",
         "width" => 900,
         "height" => 600,
         "flex-width" => true,
         "flex-height" => true
     )));
-    $wp_customize->add_setting('sz-template-text');
-    $wp_customize->add_control('sz-template-text-control', array(
+    $wp_customize->add_setting('panth-text');
+    $wp_customize->add_control('panth-text-control', array(
         'label' => 'text field',
         'type' => 'string',
-        'section' => 'sz-template-section',
-        'settings' => 'sz-template-home-text'
+        'section' => 'panth-section',
+        'settings' => 'panth-home-text'
     ));
 }
 
-add_action('customize_register', 'sz_template_customizer');
+add_action('customize_register', 'panth_customizer');

@@ -16,7 +16,7 @@ _Very_ stripped-down boilerplate for WordPress theme development.
     - footer.php, currently empty
 
 ## Usage
-1. Search for all instances of `sz-template-` and `sz_template_` and replace with your own prefix. Or don't, if you want to just keep them.
+1. Search for all instances of `panth-` and `panth_` and replace with your own prefix. Or don't, if you want to just keep them.
 
     Note: There are a few instances of `sz-` without `template` afterwards that should be left in; these are things like helper functions and libraries that I've written and included.
     
