@@ -84,11 +84,12 @@ if ( is_search() ) {
 						}
 						?>
                     </div>
-					<?php
+                    <?php
 					if ( $is_embed ) {
 						?>
+                        <h3><?php the_title(); ?></h3>
                         <iframe src="<?php echo get_post_meta( get_the_ID(), 'url', true ); ?>"
-                                class="item-embed"></iframe>
+                                class="item-embed" onload="this.style.visibility='visible';"></iframe>
                         <button class="item-link-button"
                                 onclick="location.href='<?php echo get_post_meta( get_the_ID(), 'url', true ); ?>'">
                             ⧉
