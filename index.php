@@ -13,38 +13,42 @@
     <div id="item-grid">
 		<?php
 		$args  = array(
-			'post_type' => 'Student work',
-            'posts_per_page' => 10,
+			'post_type'      => 'Student work',
+			'posts_per_page' => 10,
 		);
 		$items = new WP_Query( $args );
 		if ( $items->have_posts() ) :
 			while ( $items->have_posts() ) : $items->the_post();
-                $cats = get_the_category();
-                $is_embed = has_category('StoryMap');
+				$cats     = get_the_category();
+				$is_embed = has_category( 'StoryMap' );
 				?>
-                <a class="item" href="<?php echo get_post_meta(get_the_ID(), 'url', TRUE); ?>">
+                <a class="item" href="<?php echo get_post_meta( get_the_ID(), 'url', true ); ?>">
                     <div class="item-top-bar">
-                        <?php
-                            foreach ($cats as $cat) {
-                                ?>
-                                    <button class="item-category"><span><?php echo $cat->name?></span></button>
-                                <?php
-                            }
-                        ?>
+						<?php
+						foreach ( $cats as $cat ) {
+							?>
+                            <button class="item-category"><span><?php echo $cat->name ?></span></button>
+							<?php
+						}
+						?>
                     </div>
-                    <?php
-                    if ($is_embed) {
-                        ?>
-                        <iframe src="<?php echo get_post_meta(get_the_ID(), 'url', TRUE); ?>" class="item-embed"></iframe>
-                        <?php
-                    } else {
-	                    ?>
+					<?php
+					if ( $is_embed ) {
+						?>
+                        <iframe src="<?php echo get_post_meta( get_the_ID(), 'url', true ); ?>"
+                                class="item-embed"></iframe>
+                        <button class="item-link-button" onclick="location.href='<?php echo get_post_meta( get_the_ID(), 'url', true ); ?>'">
+                            ⧉
+                        </button>
+						<?php
+					} else {
+						?>
                         <h2><?php the_title(); ?></h2>
-	                    <?php
-                    }
-                    ?>
+						<?php
+					}
+					?>
                     <div class="item-bottom-bar">
-                        <?php echo get_post_meta(get_the_ID(), 'author', TRUE); ?>
+						<?php echo get_post_meta( get_the_ID(), 'author', true ); ?>
                     </div>
                 </a>
 			<?php

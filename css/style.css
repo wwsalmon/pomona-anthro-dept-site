@@ -94,6 +94,22 @@ a {
     transform-origin: 0 0;
 }
 
+.item-link-button {
+    position: absolute;
+    border: 1px solid #bfbfbf;
+    width: 48px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 20px;
+    color: #BBBBBB;
+    text-align: center;
+    right: 8px;
+    top: 56px;
+    cursor: pointer;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
 @media (min-width: 600px) {
     #item-grid {
         grid-template-columns: repeat(2, 1fr);
