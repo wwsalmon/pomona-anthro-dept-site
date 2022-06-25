@@ -10,13 +10,62 @@
             Archives of student work from the anthropology department at Pomona College
         </p>
     </div>
+    <div id="items-bar">
+        <div id="category-bar">
+            <span style="margin-right: 8px;">Filter by category</span>
+			<?php wp_dropdown_categories( array(
+				'show_option_none' => 'All items'
+			) ); ?>
+        </div>
+        <div id="search-bar">
+            <input type="text" id="search-input" placeholder="Search by title or author">
+            <button id="search-button">Search</button>
+        </div>
+        <script type="text/javascript">
+            const dropdown = document.getElementById("cat");
+
+            function onCatChange() {
+                if (dropdown.options[dropdown.selectedIndex].value > 0) {
+                    location.href = "<?php echo esc_url( home_url( '/' ) ); ?>?cat=" + dropdown.options[dropdown.selectedIndex].value;
+                } else {
+                    location.href = "<?php echo esc_url( home_url( '/' ) ); ?>";
+                }
+            }
+
+            dropdown.onchange = onCatChange;
+
+            const searchButton = document.getElementById("search-button");
+            const searchInput = document.getElementById("search-input");
+
+            function onSearchButtonClick() {
+                location.href = "<?php echo esc_url( home_url( '/' ) ); ?>?s=" + searchInput.value;
+            }
+
+            searchButton.onclick = onSearchButtonClick;
+        </script>
+    </div>
+<?php
+if (is_search()) {
+    ?>
+    <div id="search-banner">
+        <div id="search-banner-inner">
+            <span>Showing search results for <b><?php echo get_search_query( false ) ?></b>. <a href="<?php echo esc_url( home_url( '/' ) ); ?>" style="text-decoration: underline">Return to all posts</a></span>
+        </div>
+    </div>
+        <?php
+}
+?>
     <div id="item-grid">
 		<?php
-		$args  = array(
+		$cat_id       = get_query_var( 'cat' );
+		$search_query = get_search_query( false );
+		$args         = array(
 			'post_type'      => 'Student work',
 			'posts_per_page' => 10,
+			'cat'            => $cat_id,
+			's'              => $search_query,
 		);
-		$items = new WP_Query( $args );
+		$items        = new WP_Query( $args );
 		if ( $items->have_posts() ) :
 			while ( $items->have_posts() ) : $items->the_post();
 				$cats     = get_the_category();
@@ -37,7 +86,8 @@
 						?>
                         <iframe src="<?php echo get_post_meta( get_the_ID(), 'url', true ); ?>"
                                 class="item-embed"></iframe>
-                        <button class="item-link-button" onclick="location.href='<?php echo get_post_meta( get_the_ID(), 'url', true ); ?>'">
+                        <button class="item-link-button"
+                                onclick="location.href='<?php echo get_post_meta( get_the_ID(), 'url', true ); ?>'">
                             ⧉
                         </button>
 						<?php
