@@ -14,3 +14,24 @@ function remove_admin_bar() {
 }
 
 add_action('after_setup_theme', 'remove_admin_bar');
+
+function panth_create_post_type() {
+
+	register_post_type( 'Student work',
+		// CPT Options
+		array(
+			'labels' => array(
+				'name' => 'Student work',
+				'singular_name' => 'Item',
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'student_work'),
+			'show_in_rest' => true,
+			'supports' => array('title', 'custom-fields'),
+			'taxonomies' => array('category'),
+		)
+	);
+}
+// Hooking up our function to theme setup
+add_action( 'init', 'panth_create_post_type' );
