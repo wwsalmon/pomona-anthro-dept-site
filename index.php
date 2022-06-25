@@ -45,25 +45,28 @@
         </script>
     </div>
 <?php
-if (is_search()) {
-    ?>
+if ( is_search() ) {
+	?>
     <div id="search-banner">
         <div id="search-banner-inner">
-            <span>Showing search results for <b><?php echo get_search_query( false ) ?></b>. <a href="<?php echo esc_url( home_url( '/' ) ); ?>" style="text-decoration: underline">Return to all posts</a></span>
+            <span>Showing search results for <b><?php echo get_search_query( false ) ?></b>. <a
+                        href="<?php echo esc_url( home_url( '/' ) ); ?>" style="text-decoration: underline">Return to all posts</a></span>
         </div>
     </div>
-        <?php
+	<?php
 }
 ?>
     <div id="item-grid">
 		<?php
 		$cat_id       = get_query_var( 'cat' );
 		$search_query = get_search_query( false );
+		$page         = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 		$args         = array(
 			'post_type'      => 'Student work',
-			'posts_per_page' => 10,
+			'posts_per_page' => 12,
 			'cat'            => $cat_id,
 			's'              => $search_query,
+			'paged'          => $page,
 		);
 		$items        = new WP_Query( $args );
 		if ( $items->have_posts() ) :
@@ -106,6 +109,17 @@ if (is_search()) {
 			wp_reset_postdata();
 		endif;
 		?>
+    </div>
+    <div id="pagination">
+        <?php
+        $big = 999999999;
+        echo paginate_links( array(
+	        'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+	        'format'  => '?paged=%#%',
+	        'current' => max( 1, get_query_var( 'paged' ) ),
+	        'total'   => $items->max_num_pages,
+        ) );
+        ?>
     </div>
 <?php
 get_footer();

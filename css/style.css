@@ -23,13 +23,17 @@ a {
     box-sizing: border-box;
 }
 
-#items-bar, #item-grid, #search-banner {
+#items-bar, #item-grid, #search-banner, #pagination {
     width: 100%;
     box-sizing: border-box;
     max-width: 1296px;
     padding: 24px 16px;
     margin: 0 auto;
     position: relative;
+}
+
+#pagination a {
+    text-decoration: underline;
 }
 
 #search-banner-inner {
