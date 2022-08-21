@@ -7,7 +7,7 @@
             Student ethnographies @ Pomona
         </h1>
         <p style="margin: 16px 0; font-size: 20px">
-            Archives of student work from the anthropology department at Pomona College
+            Archives of student work from the Anthropology Department at Pomona College
         </p>
     </div>
     <div id="items-bar">
