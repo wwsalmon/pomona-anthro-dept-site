@@ -75,14 +75,16 @@ if ( is_search() ) {
 				$is_embed = has_category( 'StoryMap' );
 				?>
                 <a class="item" href="<?php echo get_post_meta( get_the_ID(), 'url', true ); ?>">
-                    <div class="item-top-bar">
-						<?php
-						foreach ( $cats as $cat ) {
-							?>
-                            <button class="item-category"><span><?php echo $cat->name ?></span></button>
-							<?php
-						}
-						?>
+                    <div class="item-top-bar-container">
+                        <div class="item-top-bar">
+		                    <?php
+		                    foreach ( $cats as $cat ) {
+			                    ?>
+                                <button class="item-category"><span><?php echo $cat->name ?></span></button>
+			                    <?php
+		                    }
+		                    ?>
+                        </div>
                     </div>
 					<?php
 					if ( $is_embed ) {
