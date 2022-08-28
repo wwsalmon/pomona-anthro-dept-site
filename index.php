@@ -84,12 +84,17 @@ if ( is_search() ) {
 						}
 						?>
                     </div>
-                    <?php
+					<?php
 					if ( $is_embed ) {
 						?>
                         <h3><?php the_title(); ?></h3>
-                        <iframe src="<?php echo get_post_meta( get_the_ID(), 'url', true ); ?>"
-                                class="item-embed" onload="this.style.visibility='visible';"></iframe>
+						<?php if ( ! has_category( 'Login needed' ) ) {
+							?>
+                            <iframe src="<?php echo get_post_meta( get_the_ID(), 'url', true ); ?>"
+                                    class="item-embed" onload="this.style.visibility=' visible';"></iframe>
+							<?php
+						}
+						?>
                         <button class="item-link-button"
                                 onclick="location.href='<?php echo get_post_meta( get_the_ID(), 'url', true ); ?>'">
                             ⧉
@@ -112,15 +117,15 @@ if ( is_search() ) {
 		?>
     </div>
     <div id="pagination">
-        <?php
-        $big = 999999999;
-        echo paginate_links( array(
-	        'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-	        'format'  => '?paged=%#%',
-	        'current' => max( 1, get_query_var( 'paged' ) ),
-	        'total'   => $items->max_num_pages,
-        ) );
-        ?>
+		<?php
+		$big = 999999999;
+		echo paginate_links( array(
+			'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'format'  => '?paged=%#%',
+			'current' => max( 1, get_query_var( 'paged' ) ),
+			'total'   => $items->max_num_pages,
+		) );
+		?>
     </div>
 <?php
 get_footer();
